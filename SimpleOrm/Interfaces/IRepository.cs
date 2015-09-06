@@ -41,6 +41,22 @@ namespace SimpleOrm.Interfaces
         Dictionary<string, Type> Fields { get; }
 
         /// <summary>
+        /// Gets the name of the table.
+        /// </summary>
+        /// <value>
+        /// The name of the table.
+        /// </value>
+        string TableName { get; }
+
+        /// <summary>
+        /// Gets the primary key.
+        /// </summary>
+        /// <value>
+        /// The primary key.
+        /// </value>
+        string PrimaryKey { get; }
+        
+        /// <summary>
         /// Gets the specified identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
@@ -57,9 +73,9 @@ namespace SimpleOrm.Interfaces
         /// <summary>
         /// Existses the specified identifier.
         /// </summary>
-        /// <param name="id">The identifier.</param>
+        /// <param name="item">The identifier.</param>
         /// <returns></returns>
-        bool Exists(TEntity id);
+        bool Exists(TEntity item);
 
         /// <summary>
         /// Gets all.

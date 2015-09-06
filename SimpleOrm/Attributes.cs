@@ -87,7 +87,7 @@ namespace SimpleOrm
     /// <summary>
     /// 
     /// </summary>
-    public class DataField : Attribute
+    public class DataFieldAttribute : Attribute
     {
         /// <summary>
         /// Gets or sets the name of the field.

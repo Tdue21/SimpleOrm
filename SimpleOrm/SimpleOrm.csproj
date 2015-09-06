@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataConnectionInfo.cs" />
-    <Compile Include="GenericRepository.cs" />
+    <Compile Include="DataReaderExtensions.cs" />
+    <Compile Include="GenericSqlRepository.cs" />
     <Compile Include="Interfaces\IDataConnectionInfo.cs" />
     <Compile Include="Interfaces\IDataContext.cs" />
     <Compile Include="Interfaces\IDataEntity.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Attributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AbstractDataContext.cs" />
+    <Compile Include="PropertyInfoExtensions.cs" />
     <Compile Include="SqlServerDataContext.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,6 +21,10 @@
 // ********************************************************************
 
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -34,17 +38,19 @@ namespace SimpleOrmTests
     public class GenericRepositoryTests
     {
         private Mock<IDataContext> _context;
+        private Mock<IDataReader> _reader;
 
         [SetUp]
         protected void SetUp()
         {
+            _reader = new Mock<IDataReader>();
             _context = new Mock<IDataContext>();
 
         }
         [Test]
         public void Fields_Contains_Correct_Values_Test()
         {
-            var repo = new GenericRepository<DataObject, int>(_context.Object);
+            var repo = new GenericSqlRepository<DataObject, int>(_context.Object);
 
             repo.Fields
                 .Should().HaveCount(3)
@@ -57,7 +63,7 @@ namespace SimpleOrmTests
         [Test]
         public void Fields_Contains_Only_DataField_Decorated_Correct_Values_Test()
         {
-            var repo = new GenericRepository<DataObjectWithAttribute, int>(_context.Object);
+            var repo = new GenericSqlRepository<DataObjectWithAttribute, int>(_context.Object);
 
             repo.Fields
                 .Should().HaveCount(2)
@@ -65,6 +71,33 @@ namespace SimpleOrmTests
                 .ContainKeys("Id", "Number")
                 .And
                 .ContainValues(typeof (int), typeof (string));
+        }
+
+        [Test]
+        public void Get_Builds_Correct_Sql_Test()
+        {
+            const string expectedQuery = "select Id, Number, Created from DataObject where Id=@Id";
+            var expectedParameters = new Dictionary<string, object> { { "Id", 1 } };
+
+            var actualQuery = string.Empty;
+            var actualParameters = new Dictionary<string, object>();
+
+            _reader.Setup(r => r.Read()).Returns(false);
+            _context.Setup(c => c.ExecuteQuery(It.IsAny<string>(), It.IsAny<Dictionary<string, object>>()))
+                    .Callback<string, Dictionary<string, object>>((q, p) =>
+                                                                  {
+                                                                      actualQuery = q;
+                                                                      actualParameters = new Dictionary<string, object>(p);
+                                                                  })
+                    .Returns(_reader.Object);
+
+            var repo = new GenericSqlRepository<DataObject, int>(_context.Object);
+
+            var result = repo.Get(1);
+
+            result.Should().BeNull();
+            actualQuery.ShouldBeEquivalentTo(expectedQuery);
+            actualParameters.ShouldBeEquivalentTo(expectedParameters);
         }
     }
 }

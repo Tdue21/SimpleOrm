@@ -21,18 +21,16 @@
 // ********************************************************************
 
 using System;
-using SimpleOrm;
-using SimpleOrm.Interfaces;
+using System.Linq;
+using System.Reflection;
 
-namespace SimpleOrmTests.TestData
+namespace SimpleOrm
 {
-    public class DataObject : IDataEntity<int>
+    internal static class PropertyInfoExtensions
     {
-        [PrimaryKey]
-        public int Id { get; set; }
-
-        public string Number { get; set; }
-
-        public DateTime Created { get; set; }
+        public static T GetCustomAttribute<T>(this PropertyInfo propInfo) where T : Attribute
+        {
+            return propInfo?.GetCustomAttributes(true).OfType<T>().FirstOrDefault();
+        }
     }
 }
