@@ -20,21 +20,20 @@
 // * THE SOFTWARE.
 // ********************************************************************
 
-using System.Reflection;
+using System.Collections.Generic;
 
-[assembly: AssemblyTitle(@"SimpleOrm")]
-[assembly: AssemblyDescription("A simple ORM framework for .NET")]
-#if DEBUG
+namespace SimpleOrm.Interfaces
+{
+    public interface IRepository<TEntity, in TKey> where TEntity : IDataEntity<TKey>
+    {
+        TEntity Get(TKey id);
 
-[assembly: AssemblyConfiguration("DEBUG")]
-#else
-[assembly: AssemblyConfiguration("RELEASE")]
-#endif
+        IEnumerable<TEntity> GetAll();
 
-[assembly: AssemblyCompany("DoveSoft Consult")]
-[assembly: AssemblyProduct("DoveSoft Simple ORM")]
-[assembly: AssemblyCopyright("Copyright © 2015 by DoveSoft Consult")]
-[assembly: AssemblyTrademark("All rights reserved")]
-[assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+        TEntity Create(TEntity entity);
+
+        TEntity Update(TEntity entity);
+
+        TEntity Delete(TEntity entity);
+    }
+}

@@ -20,21 +20,35 @@
 // * THE SOFTWARE.
 // ********************************************************************
 
-using System.Reflection;
+using System;
 
-[assembly: AssemblyTitle(@"SimpleOrm")]
-[assembly: AssemblyDescription("A simple ORM framework for .NET")]
-#if DEBUG
+namespace SimpleOrm
+{
+    public class PrimaryKeyAttribute : Attribute
+    {
+    }
 
-[assembly: AssemblyConfiguration("DEBUG")]
-#else
-[assembly: AssemblyConfiguration("RELEASE")]
-#endif
+    public class ForeignKeyAttribute : Attribute
+    {
+        public string ReferenceTable { get; set; }
 
-[assembly: AssemblyCompany("DoveSoft Consult")]
-[assembly: AssemblyProduct("DoveSoft Simple ORM")]
-[assembly: AssemblyCopyright("Copyright © 2015 by DoveSoft Consult")]
-[assembly: AssemblyTrademark("All rights reserved")]
-[assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+        public string ReferenceField { get; set; }
+    }
+
+    public class TableMapAttribute : Attribute
+    {
+        public TableMapAttribute(string tableName)
+        {
+            TableName = tableName;
+        }
+
+        public string TableName { get; set; }
+
+        public Type References { get; set; }
+    }
+
+    public class DataField : Attribute
+    {
+        public string FieldName { get; set; }
+    }
+}

@@ -1,5 +1,5 @@
-﻿// *********************************************************************
-// * Copyright © 2015 Thomas Due
+// *********************************************************************
+// * Copyright � 2015 Thomas Due
 // *
 // * Permission is hereby granted, free of charge, to any person obtaining a copy
 // * of this software and associated documentation files (the "Software"), to deal
@@ -20,21 +20,37 @@
 // * THE SOFTWARE.
 // ********************************************************************
 
-using System.Reflection;
+using System;
+using System.Collections.Generic;
+using SimpleOrm.Interfaces;
 
-[assembly: AssemblyTitle(@"SimpleOrm")]
-[assembly: AssemblyDescription("A simple ORM framework for .NET")]
-#if DEBUG
+namespace SimpleOrm
+{
+    public class GenericRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : IDataEntity<TKey>
+    {
+        public TEntity Get(TKey id)
+        {
+            throw new NotImplementedException();
+        }
 
-[assembly: AssemblyConfiguration("DEBUG")]
-#else
-[assembly: AssemblyConfiguration("RELEASE")]
-#endif
+        public IEnumerable<TEntity> GetAll()
+        {
+            throw new NotImplementedException();
+        }
 
-[assembly: AssemblyCompany("DoveSoft Consult")]
-[assembly: AssemblyProduct("DoveSoft Simple ORM")]
-[assembly: AssemblyCopyright("Copyright © 2015 by DoveSoft Consult")]
-[assembly: AssemblyTrademark("All rights reserved")]
-[assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+        public TEntity Create(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TEntity Update(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TEntity Delete(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

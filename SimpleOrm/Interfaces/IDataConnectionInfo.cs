@@ -20,21 +20,14 @@
 // * THE SOFTWARE.
 // ********************************************************************
 
-using System.Reflection;
-
-[assembly: AssemblyTitle(@"SimpleOrm")]
-[assembly: AssemblyDescription("A simple ORM framework for .NET")]
-#if DEBUG
-
-[assembly: AssemblyConfiguration("DEBUG")]
-#else
-[assembly: AssemblyConfiguration("RELEASE")]
-#endif
-
-[assembly: AssemblyCompany("DoveSoft Consult")]
-[assembly: AssemblyProduct("DoveSoft Simple ORM")]
-[assembly: AssemblyCopyright("Copyright © 2015 by DoveSoft Consult")]
-[assembly: AssemblyTrademark("All rights reserved")]
-[assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+namespace SimpleOrm.Interfaces
+{
+    public interface IDataConnectionInfo
+    {
+        string Database { get; set; }
+        string Password { get; set; }
+        string Server { get; set; }
+        bool Trusted { get; set; }
+        string UserId { get; set; }
+    }
+}
