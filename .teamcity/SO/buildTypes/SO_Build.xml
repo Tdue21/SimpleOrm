@@ -8,6 +8,17 @@
     </options>
     <parameters />
     <build-runners>
+      <runner id="RUNNER_15" name="" type="jb.nuget.installer">
+        <parameters>
+          <param name="nuget.path" value="?NuGet.CommandLine.DEFAULT.nupkg" />
+          <param name="nuget.updatePackages.mode" value="sln" />
+          <param name="nuget.use.restore" value="restore" />
+          <param name="nugetCustomPath" value="?NuGet.CommandLine.DEFAULT.nupkg" />
+          <param name="nugetPathSelector" value="?NuGet.CommandLine.DEFAULT.nupkg" />
+          <param name="sln.path" value="SimpleOrm.sln" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
       <runner id="RUNNER_13" name="" type="VS.Solution">
         <parameters>
           <param name="build-file-path" value="SimpleOrm.sln" />
@@ -45,17 +56,6 @@
           <param name="nunit_include" value="SimpleOrmTests\bin\Debug\SimpleOrmTests.dll" />
           <param name="nunit_platform" value="MSIL" />
           <param name="nunit_version" value="NUnit-2.6.4" />
-          <param name="teamcity.step.mode" value="default" />
-        </parameters>
-      </runner>
-      <runner id="RUNNER_15" name="" type="jb.nuget.installer">
-        <parameters>
-          <param name="nuget.path" value="?NuGet.CommandLine.DEFAULT.nupkg" />
-          <param name="nuget.updatePackages.mode" value="sln" />
-          <param name="nuget.use.restore" value="restore" />
-          <param name="nugetCustomPath" value="?NuGet.CommandLine.DEFAULT.nupkg" />
-          <param name="nugetPathSelector" value="?NuGet.CommandLine.DEFAULT.nupkg" />
-          <param name="sln.path" value="SimpleOrm.sln" />
           <param name="teamcity.step.mode" value="default" />
         </parameters>
       </runner>
