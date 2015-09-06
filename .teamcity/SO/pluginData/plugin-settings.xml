@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <versionedSettings rootId="SO_HttpsGithubComTdue21SimpleOrm" enabled="true" showChanges="false" buildSettings="ALWAYS_USE_CURRENT" />
+  <issueTrackers>
+    <trackerConnection key="youtrack1" type="youtrack">
+      <param name="secure:password" value="zxxffc0ce3230b40f0d775d03cbe80d301b" />
+      <param name="name" value="Youtrack" />
+      <param name="host" value="http://dovesoft.myjetbrains.com/youtrack/" />
+      <param name="idPrefix" value="SO" />
+      <param name="username" value="tdue21" />
+    </trackerConnection>
+  </issueTrackers>
+</settings>
+
