@@ -1,5 +1,5 @@
-﻿// *********************************************************************
-// * Copyright © 2015 Thomas Due
+// *********************************************************************
+// * Copyright � 2015 Thomas Due
 // *
 // * Permission is hereby granted, free of charge, to any person obtaining a copy
 // * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +20,15 @@
 // * THE SOFTWARE.
 // ********************************************************************
 
-namespace SimpleOrm.Interfaces
+using System;
+using SimpleOrm.Interfaces;
+
+namespace SimpleOrmTests.TestData
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="TKey">The type of the key.</typeparam>
-    public interface IDataEntity<TKey>
+    public class DataObject : IDataEntity<int>
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        TKey Id { get; set; }
+        public int Id { get; set; }
+        public string Number { get; set; }
+        public DateTime Created { get; set; }
     }
 }

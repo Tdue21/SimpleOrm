@@ -20,14 +20,66 @@
 // * THE SOFTWARE.
 // ********************************************************************
 
+using System;
+using System.Collections.Generic;
+using System.Data;
+
 namespace SimpleOrm.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IDataContext
     {
+        /// <summary>
+        /// Gets the connection information.
+        /// </summary>
+        /// <value>
+        /// The connection information.
+        /// </value>
         IDataConnectionInfo ConnectionInfo { get; }
 
+        /// <summary>
+        /// Opens this instance.
+        /// </summary>
         void Open();
 
+        /// <summary>
+        /// Closes this instance.
+        /// </summary>
         void Close();
+
+        /// <summary>
+        /// Executes the query.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns></returns>
+        IDataReader ExecuteQuery(string query, Dictionary<string, object> parameters);
+
+        /// <summary>
+        /// Executes the non query.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns></returns>
+        int ExecuteNonQuery(string query, Dictionary<string, object> parameters);
+
+        /// <summary>
+        /// Executes the scalar.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns></returns>
+        object ExecuteScalar(string query, Dictionary<string, object> parameters);
+
+        /// <summary>
+        /// Creates the parameter.
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        IDataParameter CreateParameter(string parameter, Type type, object value);
     }
 }

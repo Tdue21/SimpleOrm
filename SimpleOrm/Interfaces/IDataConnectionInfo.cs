@@ -22,12 +22,49 @@
 
 namespace SimpleOrm.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IDataConnectionInfo
     {
+        /// <summary>
+        /// Gets or sets the database.
+        /// </summary>
+        /// <value>
+        /// The database.
+        /// </value>
         string Database { get; set; }
+       
+        /// <summary>
+        /// Gets or sets the password.
+        /// </summary>
+        /// <value>
+        /// The password.
+        /// </value>
         string Password { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the server.
+        /// </summary>
+        /// <value>
+        /// The server.
+        /// </value>
         string Server { get; set; }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="IDataConnectionInfo" /> is trusted.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if trusted; otherwise, <c>false</c>.
+        /// </value>
         bool Trusted { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the user identifier.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
         string UserId { get; set; }
     }
 }

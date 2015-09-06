@@ -21,6 +21,7 @@
 // ********************************************************************
 
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using SimpleOrm.Interfaces;
 
@@ -28,8 +29,6 @@ namespace SimpleOrm
 {
     public class SqlServerDataContext : AbstractDataContext
     {
-        private SqlConnection _connection;
-
         public SqlServerDataContext()
         {
         }
@@ -41,23 +40,32 @@ namespace SimpleOrm
         public override void Open()
         {
             BuildConnect();
-            _connection.Open();
+            Connection.Open();
         }
 
         public override void Close()
         {
-            if (_connection == null)
+            if (Connection == null)
             {
                 throw new InvalidOperationException("No active connection found.");
             }
 
-            _connection.Close();
-            _connection = null;
+            Connection.Close();
+            Connection = null;
+        }
+
+        public override IDataParameter CreateParameter(string parameter, Type type, object value)
+        {
+            return new SqlParameter
+                   {
+                       ParameterName = parameter,
+                       Value = value
+                   };
         }
 
         private void BuildConnect()
         {
-            if (_connection != null)
+            if (Connection != null)
             {
                 throw new InvalidOperationException("A connection already exists. Close this first.");
             }
@@ -74,7 +82,7 @@ namespace SimpleOrm
                            MultipleActiveResultSets = true
                        };
 
-            _connection = new SqlConnection(conn.ConnectionString);
+            Connection = new SqlConnection(conn.ConnectionString);
         }
     }
 }

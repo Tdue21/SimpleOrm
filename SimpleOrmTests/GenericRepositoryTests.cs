@@ -20,53 +20,51 @@
 // * THE SOFTWARE.
 // ********************************************************************
 
+using System;
+using FluentAssertions;
+using Moq;
+using NUnit.Framework;
+using SimpleOrm;
 using SimpleOrm.Interfaces;
+using SimpleOrmTests.TestData;
 
-namespace SimpleOrm
+namespace SimpleOrmTests
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class DataConnectionInfo : IDataConnectionInfo
+    [TestFixture]
+    public class GenericRepositoryTests
     {
-        /// <summary>
-        /// Gets or sets the server.
-        /// </summary>
-        /// <value>
-        /// The server.
-        /// </value>
-        public string Server { get; set; }
+        private Mock<IDataContext> _context;
 
-        /// <summary>
-        /// Gets or sets the database.
-        /// </summary>
-        /// <value>
-        /// The database.
-        /// </value>
-        public string Database { get; set; }
+        [SetUp]
+        protected void SetUp()
+        {
+            _context = new Mock<IDataContext>();
 
-        /// <summary>
-        /// Gets or sets the user identifier.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        public string UserId { get; set; }
+        }
+        [Test]
+        public void Fields_Contains_Correct_Values_Test()
+        {
+            var repo = new GenericRepository<DataObject, int>(_context.Object);
 
-        /// <summary>
-        /// Gets or sets the password.
-        /// </summary>
-        /// <value>
-        /// The password.
-        /// </value>
-        public string Password { get; set; }
+            repo.Fields
+                .Should().HaveCount(3)
+                .And
+                .ContainKeys("Id", "Number", "Created")
+                .And
+                .ContainValues(typeof (int), typeof (string), typeof (DateTime));
+        }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="IDataConnectionInfo" /> is trusted.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if trusted; otherwise, <c>false</c>.
-        /// </value>
-        public bool Trusted { get; set; }
+        [Test]
+        public void Fields_Contains_Only_DataField_Decorated_Correct_Values_Test()
+        {
+            var repo = new GenericRepository<DataObjectWithAttribute, int>(_context.Object);
+
+            repo.Fields
+                .Should().HaveCount(2)
+                .And
+                .ContainKeys("Id", "Number")
+                .And
+                .ContainValues(typeof (int), typeof (string));
+        }
     }
 }

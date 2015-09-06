@@ -20,53 +20,20 @@
 // * THE SOFTWARE.
 // ********************************************************************
 
+using System;
+using SimpleOrm;
 using SimpleOrm.Interfaces;
 
-namespace SimpleOrm
+namespace SimpleOrmTests.TestData
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class DataConnectionInfo : IDataConnectionInfo
+    public class DataObjectWithAttribute : IDataEntity<int>
     {
-        /// <summary>
-        /// Gets or sets the server.
-        /// </summary>
-        /// <value>
-        /// The server.
-        /// </value>
-        public string Server { get; set; }
+        [DataField]
+        public int Id { get; set; }
 
-        /// <summary>
-        /// Gets or sets the database.
-        /// </summary>
-        /// <value>
-        /// The database.
-        /// </value>
-        public string Database { get; set; }
+        [DataField]
+        public string Number { get; set; }
 
-        /// <summary>
-        /// Gets or sets the user identifier.
-        /// </summary>
-        /// <value>
-        /// The user identifier.
-        /// </value>
-        public string UserId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the password.
-        /// </summary>
-        /// <value>
-        /// The password.
-        /// </value>
-        public string Password { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="IDataConnectionInfo" /> is trusted.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if trusted; otherwise, <c>false</c>.
-        /// </value>
-        public bool Trusted { get; set; }
+        public DateTime Created { get; set; }
     }
 }

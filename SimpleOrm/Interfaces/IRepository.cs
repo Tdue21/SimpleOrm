@@ -20,20 +20,72 @@
 // * THE SOFTWARE.
 // ********************************************************************
 
+using System;
 using System.Collections.Generic;
 
 namespace SimpleOrm.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TEntity">The type of the entity.</typeparam>
+    /// <typeparam name="TKey">The type of the key.</typeparam>
     public interface IRepository<TEntity, in TKey> where TEntity : IDataEntity<TKey>
     {
+        /// <summary>
+        /// Gets the fields.
+        /// </summary>
+        /// <value>
+        /// The fields.
+        /// </value>
+        Dictionary<string, Type> Fields { get; }
+
+        /// <summary>
+        /// Gets the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         TEntity Get(TKey id);
 
+        /// <summary>
+        /// Existses the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        bool Exists(TKey id);
+
+        /// <summary>
+        /// Existses the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        bool Exists(TEntity id);
+
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<TEntity> GetAll();
 
+        /// <summary>
+        /// Creates the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         TEntity Create(TEntity entity);
 
+        /// <summary>
+        /// Updates the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         TEntity Update(TEntity entity);
 
+        /// <summary>
+        /// Deletes the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
         TEntity Delete(TEntity entity);
     }
 }

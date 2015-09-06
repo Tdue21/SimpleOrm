@@ -24,31 +24,77 @@ using System;
 
 namespace SimpleOrm
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PrimaryKeyAttribute : Attribute
     {
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class ForeignKeyAttribute : Attribute
     {
+        /// <summary>
+        /// Gets or sets the reference table.
+        /// </summary>
+        /// <value>
+        /// The reference table.
+        /// </value>
         public string ReferenceTable { get; set; }
 
+        /// <summary>
+        /// Gets or sets the reference field.
+        /// </summary>
+        /// <value>
+        /// The reference field.
+        /// </value>
         public string ReferenceField { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class TableMapAttribute : Attribute
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TableMapAttribute"/> class.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
         public TableMapAttribute(string tableName)
         {
             TableName = tableName;
         }
 
+        /// <summary>
+        /// Gets or sets the name of the table.
+        /// </summary>
+        /// <value>
+        /// The name of the table.
+        /// </value>
         public string TableName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the references.
+        /// </summary>
+        /// <value>
+        /// The references.
+        /// </value>
         public Type References { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class DataField : Attribute
     {
+        /// <summary>
+        /// Gets or sets the name of the field.
+        /// </summary>
+        /// <value>
+        /// The name of the field.
+        /// </value>
         public string FieldName { get; set; }
     }
 }
