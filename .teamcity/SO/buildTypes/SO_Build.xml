@@ -4,7 +4,7 @@
   <description />
   <settings>
     <options>
-      <option name="artifactRules" value="SimpleOrm\bin\Debug =&gt; SimpleOrm\bin\Debug" />
+      <option name="artifactRules" value="SimpleOrm\bin\Debug\**" />
     </options>
     <parameters />
     <build-runners>
