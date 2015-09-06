@@ -3,6 +3,9 @@
   <name>Build</name>
   <description />
   <settings>
+    <options>
+      <option name="artifactRules" value="SimpleOrm\bin\Debug =&gt; SimpleOrm\bin\Debug" />
+    </options>
     <parameters />
     <build-runners>
       <runner id="RUNNER_13" name="" type="VS.Solution">
