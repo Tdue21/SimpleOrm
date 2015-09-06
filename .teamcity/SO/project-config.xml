@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="533b3ff4-7030-4706-af99-497753ba28c6" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/9.0/project-config.xsd">
+  <name>SimpleOrm</name>
+  <description>A simple ORM framework for .NET.</description>
+  <parameters />
+  <cleanup />
+</project>
+
