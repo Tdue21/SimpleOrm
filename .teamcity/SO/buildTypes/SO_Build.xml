@@ -4,7 +4,7 @@
   <description />
   <settings>
     <options>
-      <option name="artifactRules" value="SimpleOrm\bin\Debug =&gt; SimpleOrm\bin\Debug" />
+      <option name="artifactRules" value="SimpleOrm\bin\Debug\**" />
     </options>
     <parameters />
     <build-runners>
@@ -53,7 +53,13 @@
       <vcs-entry-ref root-id="SO_HttpsGithubComTdue21SimpleOrm" />
     </vcs-settings>
     <requirements />
-    <build-triggers />
+    <build-triggers>
+      <build-trigger id="vcsTrigger" type="vcsTrigger">
+        <parameters>
+          <param name="quietPeriodMode" value="DO_NOT_USE" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
     <cleanup />
   </settings>
 </build-type>
